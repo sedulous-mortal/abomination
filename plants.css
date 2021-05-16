@@ -1,0 +1,46 @@
+.core {
+    margin-left: 175px;
+    display: flex;
+}
+
+.content {
+    flex: 3;
+}
+
+.owned-seeds-list{
+    border-left: 3px solid rgb(45, 68, 45);
+    flex: 1;
+    background-color: rgb(169, 197, 197);
+    color: darkslategrey;
+}
+
+
+div .seeds{ /* needed? */
+    text-align: center;
+    font-weight: 900;
+    padding-top: 2vh;
+    background-color: rgb(45, 68, 45);
+}
+
+/* .seed-nav li { !! see note about .seed-nav li:hover */
+    .seed-name {
+        list-style: none;
+        height: 5vh;
+        display: flex;
+        align-items: center;
+        padding-left: 2vw;
+    }
+
+/* .seed-nav li:hover{ note: this only works if we hardcode or statically include
+    the list items, if we do it dynamically after our db response,  we will have 
+    to use a specific class name on each li, in this case seed-name */
+    .seed-name:hover{
+        border-left: 4px solid white;
+        padding-left: .5vw;
+        transition-duration: .15s;
+    }
+    
+    .owned-seeds-list div {
+        height: 5vh;
+        color: white;
+    }

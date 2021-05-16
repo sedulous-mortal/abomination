@@ -1,0 +1,42 @@
+body {
+    background-color: #222;
+    color: white;
+    text-align: center;
+}
+
+h1 {
+    margin: 2vw 2vh;
+}
+
+.opener-text {
+    text-align: center;
+    width: 60vw;
+    margin: 0 auto;
+    margin-top: 30vh;
+    font-size: 1.5rem;
+}
+nav {
+    width:  100vw;
+    height: 6vh;
+    background-color: #444;
+}
+
+nav ul{
+    display: flex;
+    height: 6vh;
+    text-align: center;
+    align-items: center;
+    justify-content: center;
+}
+
+nav ul li {
+    height: 6vh;
+    flex: 1;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+nav ul li:hover{
+    background-color: #333;
+}
