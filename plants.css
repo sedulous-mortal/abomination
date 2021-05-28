@@ -16,7 +16,7 @@
 
 div .seeds{ /* needed? */
     text-align: center;
-    font-weight: 900;
+    font-weight: 600;
     padding-top: 2vh;
     background-color: rgb(45, 68, 45);
 }
@@ -42,4 +42,9 @@ div .seeds{ /* needed? */
     .owned-seeds-list div {
         height: 5vh;
         color: white;
+    }
+
+    #seed-nav {
+        min-height: 50vh;
+        min-width: 30vw;
     }
