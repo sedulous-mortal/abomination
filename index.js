@@ -4,52 +4,50 @@
 // listen for changes to document.readyState - onreadystatechange is
 // fired when readyState value is changed
 // SRC: https://www.jamesbaum.co.uk/blether/document-ready-alternative-in-vanilla-javascript/
-// document.onreadystatechange = function () {
-//     // check the value - if it's 'interactive' then the DOM has loaded, 
-//     // if it's "complete" then  everything has finished loading (equivalent to $(window).load())
-//     if (document.readyState === "interactive") {
-//         console.log('ready')
-//         // load the data
-//         $.ajax({
-//             type: 'GET', 
-//             url: './data.json',
-//             dataType: 'json',
-//         }).done(loadPlantsSuccessFunction);
-//     }
-// }
+document.onreadystatechange = function () {
+    // check the value - if it's 'interactive' then the DOM has loaded, 
+    // if it's "complete" then  everything has finished loading (equivalent to $(window).load())
+    if (document.readyState === "interactive") {
+        console.log('ready')
+        // load the data
+        $.ajax({
+            url: './data.json',
+            dataType: 'json',
+        }).done(loadPlantsSuccessFunction);
+    }
+}
 
-// we make this async to  ensure  things load in the correct order across all  pages
-// async function loadPlantsSuccessFunction(plantsData) {
-//     console.log(plantsData)
-//      for (const plant of plantsData) {
-//         await addPlantsToPages(plant);
-//       }
-    // let divs = document.querySelectorAll("div");
-    // for (let index = 0; index < divs.length; ++index) {
-    //     divs[index].addEventListener('click', e => {
-    //         console.log("Index is: " + index);
-    //     });
-    // }
-// }
+// we make this async to  ensure things load in the correct order across all pages
+async function loadPlantsSuccessFunction(plantsData) {
+    console.log(plantsData, "in async")
+     for (const plant of plantsData) {
+         console.log(plant, "PLANT")
+        await addPlantsToPages(plant);
+      }
+    let divs = document.querySelectorAll("div");
+    for (let index = 0; index < divs.length; ++index) {
+        divs[index].addEventListener('click', e => {
+            console.log("Index is: " + index);
+        });
+    }
+}
 
 // does this need to  be a Promise because of the await on line 25?
 function  addPlantToPages(plant){
     console.log('hi')
     console.log(plant)
-    $.each(data, function(index, element) {
-        console.log(element)
-        $('body').append($('<div>', {
-            text: element.Name
-        }));
-    });
+    $('.main-content').append($('<div>', {
+        text: plant.Name
+    }));
     // here we will need to map over the keys in the plant
-    //  add plant to the garden dom 
-    // add plant to the plants list dom
-    // add plant and  its dates to the timeline
+    //  add plant to the garden html file 
+    // add plant to the plants list html file
+    // add plant and its dates to the timeline html file
 }
 
 let showPlants = () => {
     console.log('showing plants')
+    addPlantToPages()
     // I adapted this local-file fetch syntax from
     //  https://stackoverflow.com/a/50812705
     fetch('plants.html')

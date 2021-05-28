@@ -3,7 +3,7 @@ document.addEventListener("DOMContentLoaded", function () {
     init();
 });
 // when we load the index.html page, the script tag there grabs this content and this event listener,  and that means the init runs then, theoretically. but all the things to append to don't exist because  they are written (via replace) into the DOM when the user clicks "plants" in the  nav at random. how can we fix this timing issue?
-// option 1 = maybe by putting the script tag into the bottom of the plants.html file we can get this init to get called when the plants html module loads?
+// do I even want the plants to  load when the plants page is hit? Wouldn't it be neat if they were loaded in the bg while I was shown  the splash homepage that has like  two lines of text?
 
 var seeds = [];
 var ownedSeeds = [];
@@ -44,7 +44,7 @@ function showSeed(e) {
         seedToRender = seeds.filter((seed) => {
         return seed.Name == seedName;
     })[0];
-    }else seedToRender = { "Name": "Unidentified Seed"}
+    } else seedToRender = { "Name": "Unidentified Seed"}
     renderSeed(seedToRender);
 }
 
