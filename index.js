@@ -32,9 +32,9 @@ function loadPlantsSuccessFunction(plantsData) {
      for (const plant of plantsData) {
         addPlantsToPages(plant);
       }
-    let divs = document.querySelectorAll("div");
-    for (let index = 0; index < divs.length; ++index) {
-        divs[index].addEventListener('click', e => {
+    let lis = document.querySelectorAll("#seed-nav li");
+    for (let index = 0; index < lis.length; ++index) {
+        lis[index].addEventListener('click', e => {
             console.log("Index is: " + index);
         });
     }
