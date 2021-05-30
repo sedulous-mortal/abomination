@@ -22,29 +22,29 @@ div .seeds{ /* needed? */
 }
 
 /* .seed-nav li { !! see note about .seed-nav li:hover */
-    .seed-name {
-        list-style: none;
-        height: 5vh;
-        display: flex;
-        align-items: center;
-        padding-left: 2vw;
-    }
+.seed-name {
+    list-style: none;
+    height: 5vh;
+    display: flex;
+    align-items: center;
+    padding-left: 2vw;
+}
 
 /* .seed-nav li:hover{ note: this only works if we hardcode or statically include
     the list items, if we do it dynamically after our db response,  we will have 
     to use a specific class name on each li, in this case seed-name */
-    .seed-name:hover{
-        border-left: 4px solid white;
-        padding-left: .5vw;
-        transition-duration: .15s;
-    }
+.seed-name:hover{
+    border-left: 4px solid white;
+    padding-left: .5vw;
+    transition-duration: .15s;
+}
     
-    .owned-seeds-list div {
-        height: 5vh;
-        color: white;
-    }
+.owned-seeds-list div {
+    height: 5vh;
+    color: white;
+}
 
-    #seed-nav {
-        min-height: 50vh;
-        min-width: 30vw;
-    }
+#seed-nav {
+    min-height: 50vh;
+    min-width: 30vw;
+}
