@@ -99,3 +99,16 @@ let showTimeline = () =>  {
         console.log('Failed to fetch page: ', err);  
     });
 }
+
+let showNutrition = () => {
+    fetch('nutrition.html')
+    .then(function(response){
+        return response.text()
+    })
+    .then(function(html) {
+        document.getElementsByClassName("main-content")[0].innerHTML = html
+    })
+    .catch(function(err) {
+        console.log("Failed to fetch page: ", err)
+    })
+}
