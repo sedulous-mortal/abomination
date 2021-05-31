@@ -143,3 +143,26 @@ let showNutrition = () => {
         console.log("Failed to fetch page: ", err)
     })
 }
+
+// I put this here cuz when it was in nutrition.js it couldn't find it, now it logs the event as undefined.
+let doThing = (event) => {
+    console.log(event)
+event.stopImmediatePropagation();
+const json = serialize_form(this);
+console.log(json);
+return false
+/*$.ajax({
+    type: 'POST',
+    url: 'https://url.com/users/register',
+    dataType: 'json',
+    data: json,
+    contentType: 'application/json',
+    success: function(data) {
+    alert(data)
+    }
+});*/
+}
+const serialize_form = form => JSON.stringify(
+Array.from(new FormData(form).entries())
+        .reduce((m, [ key, value ]) => Object.assign(m, { [key]: value }), {})
+);

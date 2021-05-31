@@ -3,11 +3,12 @@
     <div class="nutrition">
         <h1>Nutrition Info</h1>
         <p>Awesome charts will appear here.</p>
-        <form onsubmit="return setAction(this)">
+        <!-- <form action="/addFood" method="post" id="addFood"> -->
+        <form>
             <label for="food">Food you ate:</label>
             <input type="text" id="food" name="food" required
                 minlength="2" maxlength="20" size="10"> 
-            <input type="submit" value="Submit">
+            <input type="button" id="addFoodSubmit" onclick="doThing()" value="Submit">
         </form>
     </div>
     <script src="nutrition.js"></script>
