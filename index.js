@@ -1,5 +1,5 @@
 
-// let JSONfile;
+var lastClicked = "HOME";
 
 // this acts as a placeholder for our globally-accessible plantsData, 
 // which will be like a shared state across all pages
@@ -42,11 +42,38 @@ function loadPlantsSuccessFunction(plantsData) {
 
 function  addPlantsToPages(plant){
     console.log("adding " + plant.Name + " to page")
-    if ($('#seed-nav')){
-        console.log("putting the " + plant.Name + " in my seed-nav id div")
-        $('#seed-nav').append(
-            $('<li>', {text: plant.Name}));
-    } else console.log('where is my seed-nav id div')
+    // if ($('#seed-nav')){
+    //     console.log("putting the " + plant.Name + " in my seed-nav id div")
+    //     $('#seed-nav').append(
+    //         $('<li>', {text: plant.Name}));
+    // } else console.log('where is my seed-nav id div')
+    async function getJSON(path, callback) {
+        return callback(await fetch(path).then(r => r.json()));
+    }
+    // here is Nicholas Hazel's self-instantiating anonymous function
+    (async function () {
+        // this line makes sure with await that we are getting ALL the seeds at once
+        seeds = await getJSON('./data.json', data => data);
+        // TIL that $ helps us denote seedList will be a dom node/element. THX Nicholas
+        const $seedList = document.getElementById('seed-nav');
+        for (let seed of seeds) {
+            if(seed && seed.Name){
+               $seedList.insertAdjacentHTML(
+                   'beforeend',
+                   `<li class="seed-name" onclick="showSeed(event)">${seed.Name}</li>`
+               )
+            } else if (seed) {
+               $seedList.insertAdjacentHTML(
+                   'beforeend',
+                   `<li class="seed-name" onclick="showSeed(event)">Unidentified Seed</li>`
+               )
+            }
+        }
+        // renderHome has to happen in here, otherwise seeds is empty when it gets called because of async issues
+        renderHome();
+    })();
+
+    // TODO: build garden
     // here we will need to map over the keys in the plant for garden view
     //  add plant to the garden html file 
     // add plant to the plants list html file
@@ -54,6 +81,7 @@ function  addPlantsToPages(plant){
 }
 
 let showPlants = () => {
+    lastClicked = "PLANTS"
     // I adapted this local-file fetch syntax from
     //  https://stackoverflow.com/a/50812705
     fetch('plants.html')
@@ -75,6 +103,7 @@ let showPlants = () => {
 }
 
 let showGarden = () =>  {
+    lastClicked = "GARDEN"
     fetch('garden.html')
     .then(function(response) {
         return response.text()
@@ -88,6 +117,7 @@ let showGarden = () =>  {
 }
 
 let showTimeline = () =>  {
+    lastClicked = "TIMELINE"
     fetch('timeline.html')
     .then(function(response) {
         return response.text()
@@ -101,6 +131,7 @@ let showTimeline = () =>  {
 }
 
 let showNutrition = () => {
+    lastClicked = "NUTRITION"
     fetch('nutrition.html')
     .then(function(response){
         return response.text()

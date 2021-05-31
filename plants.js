@@ -20,12 +20,12 @@ function init() {
          // TIL that $ helps us denote seedList will be a dom node/element. THX Nicholas
          const $seedList = document.getElementById('seed-nav');
          for (let seed of seeds) {
-             if(seed && seed.Name){
+             if(seed && seed.Name && lastClicked == "PLANTS"){
                 $seedList.insertAdjacentHTML(
                     'beforeend',
                     `<li class="seed-name" onclick="showSeed(event)">${seed.Name}</li>`
                 )
-             } else if (seed) {
+             } else if (seed && lastClicked == "PLANTS") {
                 $seedList.insertAdjacentHTML(
                     'beforeend',
                     `<li class="seed-name" onclick="showSeed(event)">Unidentified Seed</li>`
@@ -56,6 +56,7 @@ function renderSeed(seed) {
 
 // template literal definition of plants homepage as a dumb component
 function renderHome(){
+    console.log('inside renderHome')
     // if seeds is empty:
     if(seeds && seeds.length === 0){ 
         //  hide ul and instead show a message: you should get seeds
@@ -64,14 +65,16 @@ function renderHome(){
     }
     // hide the seeds menu entirely if no seeds are available in the array - not working
     // if(seeds && seeds.length > 0) { document.getElementByClassName('owned-seeds-list')[0].style.display = 'none' }
-    document.getElementsByClassName('content')[0].innerHTML = `
-    <p>Caleb Warnock sells seeds
-            <a href="https://www.mcssl.com/store/calebwarnock/catalog/search">here</a>
-            as a part of the Seed Renaissance movement he is leading, to ensure that our food supply remains in the public domain.
-            Every seed he sells is guaranteed pure, NEVER hybrid, GMO, patented, or corporate owned. All of his seeds are 100% natural, grown without chemicals.
-    </p>
-    <p>SeedPicker allows gardeners to innovate on their planting calendar and optimize crop rotation, produce output, and seed stocking.</p>
-    `
+    if(lastClicked == "PLANTS"){
+        document.getElementsByClassName('content')[0].innerHTML = `
+        <p>Caleb Warnock sells seeds
+                <a href="https://www.mcssl.com/store/calebwarnock/catalog/search">here</a>
+                as a part of the Seed Renaissance movement he is leading, to ensure that our food supply remains in the public domain.
+                Every seed he sells is guaranteed pure, NEVER hybrid, GMO, patented, or corporate owned. All of his seeds are 100% natural, grown without chemicals.
+        </p>
+        <p>SeedPicker allows gardeners to innovate on their planting calendar and optimize crop rotation, produce output, and seed stocking.</p>
+        `
+    }
 }
 
 // template literal definition of seed as a dumb component

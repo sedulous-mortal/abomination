@@ -48,3 +48,15 @@ div .seeds{ /* needed? */
     min-height: 50vh;
     min-width: 30vw;
 }
+
+.content p {
+    padding: 2vh 0;
+}
+
+.content {
+    padding: 2vh;
+    line-height: 1.3rem;
+}
+a {
+    color: #DDD;
+}
